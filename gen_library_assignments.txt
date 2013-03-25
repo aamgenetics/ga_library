@@ -1,0 +1,10 @@
+Mutation <<Interface>> -- Daniel
+Crossover <<Interface>> -- Jon
+Population <<Interface>> -- Brian
+SortedPopulation -- Ashley
+UserInterface <<Interface>> -- John
+Driver <<Abstract>> -- Chris
+PopMember <<Abstract>> -- Allison
+Genome -- Brandon
+Chromosome<T> -- Neil
+DataType -- Gabriel
