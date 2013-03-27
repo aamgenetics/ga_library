@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Iterator;
 
 /*
  * SortedPopulation.java
@@ -7,7 +8,7 @@ import java.util.Random;
  *
  */
 
-public class SortedPopulation implements Popluation
+public class SortedPopulation implements Population
 {
     PopMember[] population;
     
@@ -53,7 +54,7 @@ public class SortedPopulation implements Popluation
      * Parameters:
      *      member - member to be inserted into the population.
      */
-    public void insert(Popmember member)
+    public void insert(PopMember member)
     {
         // inserts member as last of population
         population[population.length-1] = member;
@@ -156,6 +157,11 @@ public class SortedPopulation implements Popluation
         }
         
         return parents;
+    }
+
+    public Iterator iterator()
+    {
+       // method here
     }
 
 }
