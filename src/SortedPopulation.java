@@ -104,7 +104,7 @@ public class SortedPopulation implements Population
             population[j] = population[j+1];
         }
 
-        // sets the member as the place holder to be overwritten
+        // sets element as last of array to be overwritten.
         population[population.length-1] = remove;
     }
 
@@ -159,9 +159,51 @@ public class SortedPopulation implements Population
         return parents;
     }
 
-    public Iterator iterator()
+    public Iterator<PopMember> iterator()
     {
-       // method here
+       return new PopMemberIterator();
     }
 
+    //Iterator for PopMembers.
+    private class PopMemberIterator implements Iterator
+    {
+        private int location = 0;
+
+        /*
+         * Name: hasNext
+         * Description: Checks to see if there are any more
+         * members of the population.
+         *
+         * Return:
+         *      true if there are more popMembers in population.
+         */
+        public boolean hasNext()
+        {
+            if(location >= population.length-1) return false;
+            return true;
+        }
+
+        /*
+         * Name: next
+         * Description: returns the next member of the population.
+         *
+         * Return:
+         *      the next PopMember in the population.
+         */
+        public PopMember next()
+        {
+            location++;
+            return population[location];
+        }
+
+        /*
+         * Name: remove
+         * Description: Removes the member at the current location.
+         */
+        public void remove()
+        {
+             remove(population[location]);
+        }
+            
+   }
 }
