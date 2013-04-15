@@ -4,25 +4,25 @@
  * @version 0.01
  * 
  * Runs a genetic algorithm.
-*/
+ */
 
 public abstract class Driver {
-	
+
 	private Population pop;
 	private Crossover cross;
 	private Mutation mute;
 	private double mRate; // the mutation rate
 	private UserInterface ui;
-	
+
 	//TODO: Insert statistics variables of some sort?
-	
+
 	/*
 	 * MAIN
 	 */
 	public static void main(String[] args) {
 		//TODO: Implement a basic test of creating different kinds of objects in the library
 	}
-	
+
 	/**
 	 * Creates a driver that will use the input as the elements for its genetic algorithm
 	 * @param population The population of data that the program will run on
@@ -36,17 +36,17 @@ public abstract class Driver {
 		cross = crossover;
 		mute = mutation;
 		mRate = mutationRate;
-		
+
 		// TODO: any other initialization work
 	}
-	
+
 	/**
 	 * Creates an empty driver for progressive initialization using the getter/setter methods
 	 */
 	public Driver() {
 		// TODO: Something here
 	}
-	
+
 	/**
 	 * Generates a double value for how desirable the solution contained within a given Genotype
 	 * is. This value is for comparison purposes with other Genotype objects within the same population
@@ -54,40 +54,48 @@ public abstract class Driver {
 	 * @return a fitness value
 	 */
 	public abstract double evaluateFitness(Genome genotype);
-	
+
 	/**
 	 * I don't remember why this method exists
 	 */
 	public abstract void setup();
-	
+
 	/**
 	 * This method begins the execution of the genetic algorithm
 	 */
-	public abstract void run();
-	
+	public void run() {
+		setup();
+		//TODO: What other code should go here?
+		while (!stopCriteriaMet()) {
+			//Cross two parents and insert resulting child into the population
+			pop.insert(new PopMember(cross(selectParents(2)));
+			//TODO: alert user when new optimal solution is found?
+		}
+	}
+
 	/**
 	 * Returns a random array of parents of size numParents
 	 * @param numParents the number of parents to include in the returned array
 	 * @return a random array of PopMembers from the population of size numParents
 	 */
 	public abstract PopMember[] selectParents(int numParents);
-	
+
 	/**
 	 * Crosses the Genotypes contained within the parameter array and adds the child/children
 	 * (depending upon what crossover is being employed) to the population
 	 */
 	public abstract void cross(PopMember[] parents);
-	
+
 	/**
 	 * Checks whether the stopping criteria for this algorithm has been met
 	 * @return true if the algorithm should stop, false otherwise
 	 */
 	public abstract boolean stopCriteriaMet();
-	
+
 	/*
 	 * OUTPUT
 	 */
-	
+
 	/**
 	 * Outputs the current score of the best solution
 	 * @param score
@@ -95,7 +103,7 @@ public abstract class Driver {
 	public void display(double score) {
 		ui.displayScore(pop.getBest().getFitness());
 	}
-	
+
 	/**
 	 * Displays information about the current progress of the algorithm
 	 * @param status
@@ -103,7 +111,7 @@ public abstract class Driver {
 	public void display(String status) {
 		//TODO: Implement
 	}
-	
+
 	/**
 	 * Displays a given solution, normally used to display the best solution
 	 * currently found.
@@ -112,7 +120,7 @@ public abstract class Driver {
 	public void display(Genome soln) {
 		ui.displaySolution(soln);
 	}
-	
+
 	/**
 	 * Displays all current, useful information about program status
 	 * @param score
@@ -124,11 +132,11 @@ public abstract class Driver {
 		display(status);
 		display(soln);
 	}
-	
+
 	/*
 	 * GETTER AND SETTER METHODS
 	 */
-	
+
 	/**
 	 * @return the population
 	 */
