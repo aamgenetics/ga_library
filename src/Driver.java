@@ -6,12 +6,13 @@
  * Runs a genetic algorithm.
 */
 
-public class Driver {
+public abstract class Driver {
 	
 	private Population pop;
 	private Crossover cross;
 	private Mutation mute;
 	private double mRate; // the mutation rate
+	private UserInterface ui;
 	
 	//TODO: Insert statistics variables of some sort?
 	
@@ -52,63 +53,51 @@ public class Driver {
 	 * @param genotype
 	 * @return a fitness value
 	 */
-	public double evaluateFitness(Genome genotype) {
-		return 0.0; //TODO: Implement
-	}
+	public abstract double evaluateFitness(Genome genotype);
 	
 	/**
 	 * I don't remember why this method exists
 	 */
-	public void setup() {
-		//TODO: Implement
-	}
+	public abstract void setup();
 	
 	/**
 	 * This method begins the execution of the genetic algorithm
 	 */
-	public void run() {
-		//TODO: Implement
-	}
+	public abstract void run();
 	
 	/**
 	 * Returns a random array of parents of size numParents
 	 * @param numParents the number of parents to include in the returned array
 	 * @return a random array of PopMembers from the population of size numParents
 	 */
-	public PopMember[] selectParents(int numParents) {
-		return null; //TODO: Implement
-	}
+	public abstract PopMember[] selectParents(int numParents);
 	
 	/**
 	 * Crosses the Genotypes contained within the parameter array and adds the child/children
 	 * (depending upon what crossover is being employed) to the population
 	 */
-	public void cross(PopMember[] parents) {
-		//TODO: Implement
-	}
+	public abstract void cross(PopMember[] parents);
 	
 	/**
 	 * Checks whether the stopping criteria for this algorithm has been met
 	 * @return true if the algorithm should stop, false otherwise
 	 */
-	public boolean stopCriteriaMet() {
-		return true; //TODO: Implement
-	}
+	public abstract boolean stopCriteriaMet();
 	
 	/*
 	 * OUTPUT
 	 */
 	
 	/**
-	 * 
+	 * Outputs the current score of the best solution
 	 * @param score
 	 */
 	public void display(double score) {
-		//TODO: Implement
+		ui.displayScore(pop.getBest().getFitness());
 	}
 	
 	/**
-	 * 
+	 * Displays information about the current progress of the algorithm
 	 * @param status
 	 */
 	public void display(String status) {
@@ -116,21 +105,24 @@ public class Driver {
 	}
 	
 	/**
-	 * 
+	 * Displays a given solution, normally used to display the best solution
+	 * currently found.
 	 * @param soln
 	 */
 	public void display(Genome soln) {
-		//TODO: Implement
+		ui.displaySolution(soln);
 	}
 	
 	/**
-	 * 
+	 * Displays all current, useful information about program status
 	 * @param score
 	 * @param status
 	 * @param soln
 	 */
 	public void display(double score, String status, Genome soln) {
-		//TODO: Implement
+		display(score);
+		display(status);
+		display(soln);
 	}
 	
 	/*
