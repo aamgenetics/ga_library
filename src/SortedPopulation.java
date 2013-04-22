@@ -84,7 +84,7 @@ public class SortedPopulation implements Population
      */
     public void remove(PopMember member)
     {
-        int found;
+        int found = 0;
 
         // finds the member in the population
         for(int i = 0; i < population.length; i++)
@@ -202,7 +202,8 @@ public class SortedPopulation implements Population
          */
         public void remove()
         {
-             remove(population[location]);
+             //May need to be changed, Null reference could cause problems
+        	population[location] = null;
         }
             
    }
