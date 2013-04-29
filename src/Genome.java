@@ -64,10 +64,11 @@ public class Genome implements Iterable {
          * removes the chromosome at the current location
          */
         public void remove() {
-            for (int i = loc; i < chromosomes.length - 2; i++) {
-                chromosomes[i] = chromosomes[i+1];
-            }
-            chromosomes = Arrays.copyOf(chromosomes, i);
+        	//UNSUPPORTED OPERATION
+//            for (int i = loc; i < chromosomes.length - 2; i++) {
+//                chromosomes[i] = chromosomes[i+1];
+//            }
+//            chromosomes = Arrays.copyOf(chromosomes, i);
         }
     }
 }
